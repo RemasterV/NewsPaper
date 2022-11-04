@@ -21,7 +21,27 @@ dislike1 = news1.dislike()
 like2 = comment1.like()
 author1.update_rating()
 author2.update_rating()
-best_1 = Author.objects.all().order_by('-ratingAuthor')[0]
+best_1 = Author.objects.all().order_by('-ratingAuthor')[:1]
 for i in best_1:
-i.ratingAuthor
-i.authorUser.username
+	i.ratingAuthor
+	i.authorUser.username
+bestpost_1 = Post.objects.all().order_by('-rating')[:1]
+for i in bestpost_1:
+	i.dateCreation
+	i.author.authorUser
+	i.rating
+	i.title
+	i.text
+commentsofbestPost = Comment.objects.filter(commentPost = bestpost_1)
+for i in commentsofbestPost:
+	i.dateCreation                                                    
+        i.commentUser
+        i.rating 
+        i.text
+
+
+
+
+
+
+
