@@ -1,0 +1,41 @@
+{% extends 'flatpages/default.html' %}
+{% load custom_filters %}
+{% load censor %}
+{% block title %}
+{% endblock title %}
+
+{% block content %}
+   <hr>
+
+       <table>
+
+           <tr>
+
+               <td>{% censor new.title %}</td>
+
+               <td>{{ new.author }}</td>
+
+               <td>{% news_time new.dateCreation %}</td>
+
+
+           </tr>
+           <tr>
+
+
+               <td>-------------------------</td>
+           </tr>
+           <tr>
+
+
+               <td>{% censor new.text %}</td>
+           </tr>
+       </table>
+
+
+{% endblock content %}
+
+
+
+
+
+

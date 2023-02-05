@@ -1,0 +1,56 @@
+{% extends 'flatpages/default.html' %}
+{% load custom_filters %}
+{% load censor %}
+{% block title %}
+News
+{% endblock title %}
+
+{% block content %}
+   <h1>Все новости</h1>
+   <hr>
+   {% if news %}
+       <table>
+           <tr>
+               <td>Название</td>
+               <td> |</td>
+               <td>Рейтинг</td>
+               <td> |</td>
+               <td>Автор</td>
+               <td> |</td>
+               <td>Дата написания</td>
+               <td> |</td>
+               <td>Содержание</td>
+           </tr>
+           <tr>
+               <td>_______________</td>
+
+
+           </tr>
+
+           {% for post in news %}
+           <tr>
+
+
+               <td>{% censor post.title %}</td>
+                              <td> |</td>
+               <td>{{ post.rating }}</td>
+                              <td> |</td>
+               <td>{{ post.author }}</td>
+                              <td> |</td>
+               <td>{% news_time post.dateCreation %}</td>
+                              <td> |</td>
+               <td>{% censor post.text|truncatechars:20 %}</td>
+           </tr>
+           {% endfor %}
+
+       </table>
+   {% else %}
+       <h2> Новостей нет!</h2>
+   {% endif %}
+{% endblock content %}
+
+
+
+
+
+
