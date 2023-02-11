@@ -12,6 +12,7 @@ class News_search(ListView):
     ordering = 'dateCreation'
     template_name = 'news_search.html'
     context_object_name = 'news'
+
     def get_queryset(self):
         queryset = super().get_queryset()
         self.filterset = PostFilter(self.request.GET, queryset)
@@ -21,6 +22,7 @@ class News_search(ListView):
         context = super().get_context_data(**kwargs)
         context['filterset'] = self.filterset
         return context
+
 
 class News(ListView):
     model = Post
@@ -52,6 +54,8 @@ class PostUpdate(UpdateView):
     model = Post
     template_name = 'post_edit.html'
     success_url = '/news'
+
+
 class PostDelete(DeleteView):
     model = Post
     template_name = 'post_delete.html'

@@ -3,9 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models import Sum
 
 
-
 class Author(models.Model):
-
     authorUser = models.OneToOneField(User, on_delete=models.CASCADE)
     ratingAuthor = models.SmallIntegerField(default=0)
 
@@ -13,7 +11,6 @@ class Author(models.Model):
         return f'{self.authorUser}'
 
     def update_rating(self):
-
         postRat = self.post_set.aggregate(postRating=Sum('rating'))
         pRat = 0
         pRat += postRat.get('postRating')
@@ -23,15 +20,15 @@ class Author(models.Model):
         self.ratingAuthor = pRat * 3 + cRat
         self.save()
 
-class Category(models.Model):
 
+class Category(models.Model):
     name = models.CharField(max_length=64, unique=True)
 
     def __str__(self):
         return f'{self.name}'
 
-class Post(models.Model):
 
+class Post(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -39,7 +36,7 @@ class Post(models.Model):
 
     NEWS = 'NW'
     ATICLE = 'AR'
-    CATEGORY_CHOICES=(
+    CATEGORY_CHOICES = (
         (NEWS, 'Новость'),
         (ATICLE, 'Статья'),
     )
@@ -63,15 +60,14 @@ class Post(models.Model):
 
 
 class PostCategory(models.Model):
-
     postTrough = models.ForeignKey(Post, on_delete=models.CASCADE)
     categoryTrough = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.postTrough} {self.categoryTrough}'
 
-class Comment(models.Model):
 
+class Comment(models.Model):
     commentPost = models.ForeignKey(Post, on_delete=models.CASCADE)
     commentUser = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField()
