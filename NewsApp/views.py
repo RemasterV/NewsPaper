@@ -1,4 +1,6 @@
 from django.http import HttpResponseRedirect
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView
@@ -37,7 +39,7 @@ class New(DetailView):
     template_name = 'new.html'
     context_object_name = 'new'
 
-
+@login_required
 def CreatePost(request):
     form = PostForm()
     if request.method == "POST":
@@ -46,17 +48,19 @@ def CreatePost(request):
             form.save()
             return HttpResponseRedirect("/news/")
 
-    return render(request, 'post_edit.html', {"form": form})
+    return render(request, 'post_create.html', {"form": form})
 
 
-class PostUpdate(UpdateView):
+class PostUpdate(LoginRequiredMixin, UpdateView):
+    raise_exception = True
     form_class = PostForm
     model = Post
     template_name = 'post_edit.html'
     success_url = '/news'
 
 
-class PostDelete(DeleteView):
+class PostDelete(LoginRequiredMixin, DeleteView):
+    raise_exception = True
     model = Post
     template_name = 'post_delete.html'
     success_url = '/news'
