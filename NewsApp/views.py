@@ -1,9 +1,10 @@
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
 from .models import Post
 from .filters import PostFilter
 from .forms import PostForm
@@ -39,19 +40,28 @@ class New(DetailView):
     template_name = 'new.html'
     context_object_name = 'new'
 
-@login_required
-def CreatePost(request):
-    form = PostForm()
-    if request.method == "POST":
-        form = PostForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect("/news/")
 
-    return render(request, 'post_create.html', {"form": form})
+class PostCreate(PermissionRequiredMixin, CreateView):
+    permission_required = ('NewsApp.add_post',)
+    form_class = PostForm
+    model = Post
+    template_name = 'post_create.html'
+
+
+# @login_required
+# def CreatePost(request):
+#     form = PostForm()
+#     if request.method == "POST":
+#         form = PostForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return HttpResponseRedirect("/news/")
+#
+#     return render(request, 'post_create.html', {"form": form})
 
 
 class PostUpdate(LoginRequiredMixin, UpdateView):
+    permission_required = ('NewsApp.change_post',)
     raise_exception = True
     form_class = PostForm
     model = Post
