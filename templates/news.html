@@ -16,6 +16,8 @@ News
            <tr>
                <td>Название</td>
                <td> |</td>
+               <td>Категория</td>
+               <td> |</td>
                <td>Рейтинг</td>
                <td> |</td>
                <td>Автор</td>
@@ -35,6 +37,11 @@ News
 
 
                <td>{% censor post.title %}</td>
+                              <td> |</td>
+               <td>{% for category in post.postCategory.all %}
+                   <a href="{% url 'category_list' category.id %}"> {{category}} </a>
+                   {% endfor %}
+               </td>
                               <td> |</td>
                <td>{{ post.rating }}</td>
                               <td> |</td>
