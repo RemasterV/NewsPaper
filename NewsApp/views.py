@@ -70,7 +70,7 @@ class CategoryListView(News):
     context_object_name = 'category_news_list'
     def get_queryset(self):
         self.category = get_object_or_404(Category, id=self.kwargs['pk'])
-        queryset = Post.objects.filter(category=self.category).order_by('-created_at')
+        queryset = Post.objects.filter(postCategory=self.category).order_by('-dateCreation')
         return queryset
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

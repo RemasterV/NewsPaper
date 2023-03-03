@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'NewsApp',
+    'NewsApp.apps.NewsAppConfig',
     'django.contrib.sites',
     'django.contrib.flatpages',
     'django_filters',
@@ -150,7 +150,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+# ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 ACCOUNT_FORMS = {"signup": "accounts.forms.CustomSignupForm"}
 
@@ -164,3 +164,7 @@ EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 DEFAULT_FROM_EMAIL = "remasterv@yandex.ru"
 SERVER_EMAIL = "remasterv@yandex.ru"
+
+
+
+SITE_URL = 'http://127.0.0.1:8000'

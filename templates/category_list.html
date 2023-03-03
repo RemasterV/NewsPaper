@@ -2,14 +2,14 @@
 {% load custom_filters %}
 {% load censor %}
 {% block title %}
-News
+Новости категории
 {% endblock title %}
 
 {% block content %}
     {% if is_not_subscriber %}
-    <p class = "text-center"><a href="{}" class="btn-secondary btn-sm">Подписаться</a></p>
-
+         <p class = "text-center"><a href="{% url 'subscribe' category.id %}" class="btn-secondary btn-sm">Подписаться</a></p>
     {% endif %}
+
 
    <h1>Новости категории</h1>
 
