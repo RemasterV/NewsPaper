@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from allauth.account.forms import SignupForm
-from django.core.mail import EmailMultiAlternatives, mail_admins
+from django.core.mail import EmailMultiAlternatives, mail_admins, send_mail
 
 
 class CustomSignupForm(SignupForm):
@@ -12,7 +12,7 @@ class CustomSignupForm(SignupForm):
         send_mail(
             subject='Добро пожаловать в наш интернет-магазин!',
             message=f'{user.username}, вы успешно зарегистрировались!',
-            from_email=None,  # будет использовано значение DEFAULT_FROM_EMAIL
+            from_email=None,
             recipient_list=[user.email],
         )
         return user

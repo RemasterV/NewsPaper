@@ -46,6 +46,7 @@ class PostCreate(PermissionRequiredMixin, CreateView):
     form_class = PostForm
     model = Post
     template_name = 'post_create.html'
+    success_url = '/news'
 
 
 class PostUpdate(LoginRequiredMixin, UpdateView):

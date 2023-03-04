@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.yandex',
+    "django_apscheduler",
 
 ]
 
@@ -168,3 +169,6 @@ SERVER_EMAIL = "remasterv@yandex.ru"
 
 
 SITE_URL = 'http://127.0.0.1:8000'
+
+APSCHEDULER_DATETIME_FORMAT = 'N j, Y, f:s a'
+APSCHEDULER_RUN_NOW_TIMEOUT = 25
