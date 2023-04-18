@@ -3,10 +3,10 @@
 {% load censor %}
 {% block title %}
 {% endblock title %}
-
+{% load cache %}
 {% block content %}
    <hr>
-
+{% cache 10 tabl2 %}
        <table>
 
            <tr>
@@ -30,7 +30,7 @@
                <td>{% censor new.text %}</td>
            </tr>
        </table>
-
+{% endcache %}
 
 {% endblock content %}
 

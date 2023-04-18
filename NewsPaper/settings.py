@@ -188,3 +188,118 @@ CACHES = {
         'LOCATION': os.path.join(BASE_DIR, 'cache_files'),
     }
 }
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+
+
+    'formatters': {
+
+        'formatter_1': {
+            'format': '%(asctime)s %(levelname)s %(message)s'
+        },
+        'formatter_2': {
+            'format': '%(asctime)s %(levelname)s %(module)s %(message)s'
+        },
+        'formatter_3': {
+            'format': '%(asctime)s %(levelname)s %(message)s %(pathname)s %(exc_info)s'
+        },
+        'formatter_4': {
+            'format': '%(asctime)s %(levelname)s %(message)s %(pathname)s'
+        },
+    },
+
+
+    'filters': {
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        }
+    },
+
+
+    'handlers': {
+        'console_handler_1': {
+            'level': 'DEBUG',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'formatter_1'
+        },
+        'console_handler_2': {
+            'level': 'WARNING',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'formatter_4'
+        },
+        'console_handler_3': {
+            'level': 'ERROR',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'formatter_3'
+        },
+        'generallog': {
+            'level': 'INFO',
+            'filters': ['require_debug_false'],
+            'class': 'logging.FileHandler',
+            'filename': 'general.log',
+            'formatter': 'formatter_2'
+        },
+        'errorslog': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': 'errors.log',
+            'formatter': 'formatter_3'
+        },
+        'securitylog': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'security.log',
+            'formatter': 'formatter_2'
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'filters': ['require_debug_false'],
+            'formatter': 'formatter_4'
+        }
+    },
+
+
+    'loggers': {
+        'django': {
+            'handlers': ['console_handler_1', 'console_handler_2', 'console_handler_3', 'generallog'],
+            'level': 'DEBUG',
+            'propagate': True,
+         },
+        'django.request': {
+            'handlers': ['errorslog', 'mail_admins'],
+            'level': 'ERROR',
+            'propagate': False,
+         },
+        'django.server': {
+            'handlers': ['errorslog', 'mail_admins'],
+            'level': 'ERROR',
+            'propagate': False,
+         },
+        'django.template': {
+            'handlers': ['errorslog'],
+            'level': 'ERROR',
+            'propagate': False,
+         },
+        'django.db.backends': {
+            'handlers': ['errorslog'],
+            'level': 'ERROR',
+            'propagate': False,
+         },
+        'django.security': {
+            'handlers': ['securitylog'],
+            'level': 'ERROR',
+            'propagate': False,
+        }
+    }
+}
+
+ADMINS = [('Smith', 'smith@example.com'), ('Kris', 'kris@example.com')]

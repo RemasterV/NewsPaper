@@ -1,0 +1,4 @@
+2023-04-17 23:20:34,986 INFO Watching for file changes with StatReloader C:\Users\Admin\Desktop\Python proj\Django\Django\venv\lib\site-packages\django\utils\autoreload.py stack_info
+2023-04-17 23:21:14,108 INFO C:\Users\Admin\Desktop\Python proj\Django\NewsPaper\NewsPaper\settings.py changed, reloading. C:\Users\Admin\Desktop\Python proj\Django\Django\venv\lib\site-packages\django\utils\autoreload.py stack_info
+2023-04-17 23:21:14,753 INFO Watching for file changes with StatReloader C:\Users\Admin\Desktop\Python proj\Django\Django\venv\lib\site-packages\django\utils\autoreload.py None
+2023-04-17 23:22:30,268 INFO C:\Users\Admin\Desktop\Python proj\Django\NewsPaper\NewsPaper\settings.py changed, reloading. C:\Users\Admin\Desktop\Python proj\Django\Django\venv\lib\site-packages\django\utils\autoreload.py None

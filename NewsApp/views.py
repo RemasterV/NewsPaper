@@ -10,6 +10,10 @@ from .filters import PostFilter
 from .forms import PostForm
 
 
+
+
+
+
 class News_search(ListView):
     model = Post
     ordering = 'dateCreation'
