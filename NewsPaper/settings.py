@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -59,7 +60,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware'
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'NewsPaper.urls'
@@ -264,6 +266,7 @@ LOGGING = {
             'class': 'django.utils.log.AdminEmailHandler',
             'filters': ['require_debug_false'],
             'formatter': 'formatter_4'
+
         }
     },
 
@@ -303,3 +306,13 @@ LOGGING = {
 }
 
 ADMINS = [('Smith', 'smith@example.com'), ('Kris', 'kris@example.com')]
+
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale')
+]
+
+LANGUAGES = [
+    ('en-us', 'English'),
+    ('ru', 'Русский')
+]
